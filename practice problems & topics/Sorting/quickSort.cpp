@@ -1,58 +1,50 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-int partition(int arr[], int start, int end)
-{
-
-	int pivot = arr[start];
-
+int partition(vector <int> &v, int start, int end) {
+	int pivot = start;
 	int count = 0;
-	for (int i = start + 1; i <= end; i++) {
-		if (arr[i] <= pivot)
-			count++;
+	for(int i = start+1; i <= end; i++) {
+		if(v[i] <= v[pivot]) {
+			count += 1;
+		}
 	}
-	int pivotIndex = start + count;
-	swap(arr[pivotIndex], arr[start]);
+	pivot = start + count;
+	swap(v[pivot], v[start]);
+
 	int i = start, j = end;
-
-	while (i < pivotIndex && j > pivotIndex) {
-
-		while (arr[i] <= pivot) {
-			i++;
+	while(i < pivot && j > pivot) {
+		while(v[i] < v[pivot]) {
+			i += 1;
 		}
-
-		while (arr[j] > pivot) {
-			j--;
+		while(v[j] > v[pivot]) {
+			j -= 1;
 		}
-
-		if (i < pivotIndex && j > pivotIndex) {
-			swap(arr[i++], arr[j--]);
+		
+		if(i < pivot && j > pivot) {
+			swap(v[i++], v[j--]);
 		}
 	}
 
-	return pivotIndex;
+	return pivot;
 }
 
-void quickSort(int arr[], int start, int end)
-{
-	if (start >= end)
+void quickSort(vector <int> &v, int start, int end) {
+	if(start >= end) {
 		return;
-	int p = partition(arr, start, end);
-	quickSort(arr, start, p - 1);
-	quickSort(arr, p + 1, end);
-}
-
-int main()
-{
-
-	int arr[] = {4, 1, 5, 3, 2};
-	int n = 5;
-
-	quickSort(arr, 0, n - 1);
-
-	for (int i = 0; i < n; i++) {
-		cout << arr[i] << " ";
 	}
+	int p = partition(v, start, end);
+	quickSort(v, start, p-1);
+	quickSort(v, p+1, end);
+}
+int main() {
 
+	vector <int> v = {3, 1, 5, 4, 2};
+	int n = v.size();
+	quickSort(v, 0, n-1);
+
+	for(int i = 0; i < n; i++) {
+		cout << v[i] << " ";
+	}
 	return 0;
 }
