@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// Partitioning the elements
 int partition(vector <int> &v, int start, int end) {
 	int pivot = start;
 	int count = 0;
@@ -30,11 +31,19 @@ int partition(vector <int> &v, int start, int end) {
 }
 
 void quickSort(vector <int> &v, int start, int end) {
+
+	// Base case
 	if(start >= end) {
 		return;
 	}
+
+	// Get the pivot index
 	int p = partition(v, start, end);
+
+	// Sort left part
 	quickSort(v, start, p-1);
+
+	// Sort right part
 	quickSort(v, p+1, end);
 }
 int main() {
