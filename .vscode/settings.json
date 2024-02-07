@@ -4,6 +4,7 @@
         "*njk": "html",
         "ostream": "cpp",
         "vector": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "new": "cpp"
     }
 }
