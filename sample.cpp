@@ -1,26 +1,40 @@
-#include<bits/stdc++.h>
+#include <iostream>
 using namespace std;
+class Node {
+    public:
+        int data;
+        Node* next;
 
-int main()
-{
-
-    vector <int> nums = {-1,0,1,2,-1,-4};
-    int minElementPos = 0;
-
-    for(int i = 0; i < nums.size(); i++) {
-        minElementPos = i;
-        for(int j = i+1; j < nums.size(); j++) {
-            if(nums[j] < nums[minElementPos]) {
-                minElementPos = j;
-            }
+        Node(int data) {
+            this->data = data;
+            this->next = NULL ;
         }
-        if(i != minElementPos) {
-            swap(nums[i], nums[minElementPos]);
-        }
+};
+
+int search(Node* &head, int data) {
+    int count = 1;
+    while(head->data != data) {
+        head = head->next;
+        count += 1;
+    }
+    return count;
+}
+
+void InsertAtTail(Node* &tail, int data) {
+    Node* temp = new Node(data);
+    tail->next = temp;
+    tail = tail->next; 
+}
+
+int main() {
+
+    Node* n1 = new Node(3);
+    Node* tail = n1;
+    for(int i = 4; i <= 10; i++) {
+        InsertAtTail(tail, i);
     }
 
-    for(int i = 0; i < nums.size(); i++) {
-        cout << nums[i] << " ";
-    }
+    int positionEle = search(n1, 7);
+    cout << positionEle << endl;
     return 0;
 }
