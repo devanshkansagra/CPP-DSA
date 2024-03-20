@@ -30,7 +30,6 @@ class Queue {
             int ans = arr[front];
             arr[front] = (int) NULL;
             front += 1;
-            // rear -
             if(front == rear) {
                 front = 0;
                 rear = 0;
@@ -55,6 +54,13 @@ class Queue {
                 count += 1;
             }
             return count;
+        }
+
+        void display() {
+            while(front != rear) {
+                cout << frontEle() << " ";
+                front += 1;
+            }
         }
 };
 int main() {
@@ -87,5 +93,9 @@ int main() {
     cout << "Front element: " << q.frontEle() << endl;
     cout << "Back Element: " << q.back() << endl;
     cout << "Size of queue: " << q.Size() << endl;
+
+
+    // Display Element
+    q.display();
     return 0;
 }
