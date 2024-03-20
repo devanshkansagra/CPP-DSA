@@ -1,5 +1,6 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
+
 class Node {
     public:
         int data;
@@ -7,34 +8,64 @@ class Node {
 
         Node(int data) {
             this->data = data;
-            this->next = NULL ;
+            this->next = NULL;
         }
+
+        
 };
 
-int search(Node* &head, int data) {
-    int count = 1;
-    while(head->data != data) {
-        head = head->next;
-        count += 1;
-    }
-    return count;
+void insertAtHead(Node* &head, int data) {
+    Node* temp = new Node(data);
+    temp->next = head;
+    head = temp;
 }
 
-void InsertAtTail(Node* &tail, int data) {
+void insertAtTail(Node* &tail, int data) {
     Node* temp = new Node(data);
     tail->next = temp;
-    tail = tail->next; 
+    tail = tail->next;
+
 }
 
-int main() {
+void insertAtAnyPosition(Node* &head, Node* &tail, int pos, int data) {
+    
+    Node* temp = head;
+    int count = 1;
 
-    Node* n1 = new Node(3);
-    Node* tail = n1;
-    for(int i = 4; i <= 10; i++) {
-        InsertAtTail(tail, i);
+    if(pos == 1) {
+        insertAtHead(head, data);
+        return;
+    }
+    while(count < pos-1) {
+        temp = temp->next;
+        count += 1; 
     }
 
-    int positionEle = search(n1, 7);
-    cout << positionEle << endl;
+    if(temp->next == NULL) {
+        insertAtTail(tail, data);
+        return;
+    }
+
+    Node* n = new Node(data);
+    n->next = temp->next;
+    temp->next = n;
+}
+
+void display(Node* &head) {
+    Node* temp = head;
+    while(temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    } 
+}
+int main() {
+    Node* n1 = new Node(3);
+    Node* head = n1;
+    Node* tail = n1;
+
+    insertAtTail(tail, 4);
+    insertAtTail(tail, 5);
+    insertAtAnyPosition(head, tail, 4, 22);
+    display(head);
     return 0;
 }
