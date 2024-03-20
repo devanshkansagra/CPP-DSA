@@ -14,11 +14,11 @@ class Node {
         }
 
         ~Node() {
-            if(this->next == NULL) {
+            if(this->next != NULL) {
                 delete next;
                 this->next = NULL;
             }
-            if(this->prev == NULL) {
+            if(this->prev != NULL) {
                 delete prev;
                 this->prev = NULL;
             }
