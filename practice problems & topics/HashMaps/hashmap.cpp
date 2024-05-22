@@ -37,7 +37,15 @@ int main()
     // Check for the presence
     cout << map1.count("Devansh") << endl; // Will be 1 if exists, will be 0 if it does not exist
     cout << map1.count("Dhruv") << endl;   // Will be 1 if exists, will be 0 if it does not exist
-    
+
+    // size of the map
+    cout << "Size of map: " << map1.size() << endl;
+
+    // delete an element
+    map1.erase("Aman");
+
+    // will check if the map is erased or not
+    cout << "Size of map after deleting: " << map1.size() << endl;
 
     return 0;
 }
