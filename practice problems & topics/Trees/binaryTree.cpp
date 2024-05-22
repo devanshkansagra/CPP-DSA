@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+// Code for creating a node
 class Node {
     public:
         int data;
@@ -14,6 +15,7 @@ class Node {
         }
 };
 
+// Code for building the tree
 Node* buildTree(Node* root) {
     int data;
     cout << "Enter data: ";
@@ -32,6 +34,7 @@ Node* buildTree(Node* root) {
     return root;
 }
 
+// Inorder: Left, Node, Right (LNR);
 void inorder(Node* root) {
     if(root == NULL) return;
     inorder(root->left);
@@ -39,6 +42,7 @@ void inorder(Node* root) {
     inorder(root->right);
 }
 
+// Preorder: Node, Left, Right (NLR);
 void preOrder(Node* root) {
     if(root == NULL) return;
     cout << root->data << " ";
@@ -46,6 +50,7 @@ void preOrder(Node* root) {
     preOrder(root->right);
 }
 
+// PostOrder: Left, Right, Node (LRN);
 void postOrder(Node* root) {
     if(root == NULL) return;
     postOrder(root->left);
