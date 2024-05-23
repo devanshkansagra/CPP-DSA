@@ -39,6 +39,15 @@ void front(Node* &head) {
     cout << head->data << endl;
 }   
 
+void rear(Node* &tail) {
+    if(tail == NULL){
+        cout << "Queue is empty" << endl;
+    }
+    else {
+        cout << tail->data << endl;
+    }
+}
+
 bool isEmpty(Node* &head) {
     if(head == NULL) {
         return true;
@@ -59,6 +68,7 @@ int main() {
 
     Node* n = new Node(3);
     Node* head = n;
+    Node* tail = n;
 
     front(head);
     display(head);
@@ -69,6 +79,9 @@ int main() {
 
     push(head, 5);
     display(head);
+
+    cout << "Rear Element is: ";
+    rear(tail);
 
     pop(head);
     display(head);
