@@ -31,7 +31,13 @@ void push(Node* &head,int data) {
 }
 
 void top(Node* &head) {
-    cout << head->data << endl;
+    Node* topEle = head;
+    if(topEle == NULL) {
+        cout << "Stack UnderFlow";
+    }
+    else {
+        cout << topEle->data << endl;
+    }
 }
 
 void pop(Node* &head) {
