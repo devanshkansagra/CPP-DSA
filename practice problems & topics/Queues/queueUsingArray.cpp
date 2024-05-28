@@ -28,7 +28,7 @@ class Queue {
         int pop() {
 
             int ans = arr[front];
-            arr[front] = (int) NULL;
+            arr[front] = 0;
             front += 1;
             if(front == rear) {
                 front = 0;

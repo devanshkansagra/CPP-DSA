@@ -25,6 +25,11 @@ void pop(Node* &head) {
     Node* prev = NULL;
 
     int count = 1;
+
+    if(curr == NULL) {
+        cout << "Queue is empty";
+        return;
+    }
     while(curr->next != NULL) {
         prev = curr;
         curr = curr->next;
