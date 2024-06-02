@@ -5,10 +5,8 @@ void merge(int arr[], int left, int mid, int right) {
     int an = mid - left + 1;
     int bn = right - mid;
 
-    int leftArr[an];
-    int rightArr[bn];
+    int leftArr[an], rightArr[bn];
 
-    // Adding elements to the splitted arrays
     for(int i = 0; i < an; i++) {
         leftArr[i] = arr[left + i];
     }
@@ -17,31 +15,23 @@ void merge(int arr[], int left, int mid, int right) {
         rightArr[i] = arr[mid + 1 + i];
     }
 
-    // Sorting the splitted arrays
     int i = 0, j = 0, k = left;
     while(i < an && j < bn) {
         if(leftArr[i] <= rightArr[j]) {
-            arr[k] = leftArr[i];
-            k += 1;
-            i += 1;
-        }
+            arr[k++] = leftArr[i++];
+        } 
+
         else {
-            arr[k] = rightArr[j];
-            k += 1;
-            j += 1;
+            arr[k++] = rightArr[j++];
         }
     }
 
     while(i < an) {
-        arr[k] = leftArr[i];
-        k += 1;
-        i += 1;
+        arr[k++] = leftArr[i++];
     }
 
-    while(j < bn) {
-        arr[k] = rightArr[j];
-        k += 1;
-        j += 1;
+    while(j > bn) {
+        arr[k++] = rightArr[j++];
     }
 }
 void mergeSort(int arr[], int left, int right) {
