@@ -30,35 +30,34 @@ void print(ListNode *&head)
 }
 
 ListNode *middleNode(ListNode *head) {
-    int left, right = 0;
-    ListNode *temp = head;
-    while (temp != NULL) {
-        temp = temp->next;
-        right += 1;
-    }
+    ListNode* slow = head;
+    ListNode* fast = head;
 
-    int mid = left + (right - left) / 2;
-    int count = 0;
-    temp = head;
-    while (count < mid) {
-        temp = temp->next;
-        count += 1;
+    while(fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+
     }
-    return temp;
+    return slow;
 }
 
-ListNode *deleteMiddle(ListNode *head) {
-    ListNode *middleEle = middleNode(head);
-    ListNode *curr = head;
+ListNode* deleteMiddle(ListNode* head) {
+    ListNode* temp = head;
+    ListNode* slow = head;
+    ListNode* fast = head;
 
-    while (curr->next != middleEle) {
-        curr = curr->next;
+    if(head->next == NULL) {
+        head = NULL;
+        return head;
+    }
+    while(fast != NULL && fast->next != NULL) {
+        temp = slow;
+        slow = slow->next;
+        fast = fast->next->next;
     }
 
-    curr->next = middleEle->next;
-    middleEle->next = NULL;
-    delete middleEle;
-
+    temp->next = slow->next;
+    slow = NULL;
     return head;
 }
 
@@ -84,10 +83,7 @@ int main()
     ListNode *head = n;
     ListNode *tail = n;
 
-    for (int i = 1; i <= 5; i++)
-    {
-        insertAtTail(head, tail, i);
-    }
+    insertAtTail(head, tail, 1);
 
     print(head);
     deleteMiddle(head);
