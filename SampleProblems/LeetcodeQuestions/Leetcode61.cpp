@@ -5,9 +5,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#include<bits/stdc++.h>
-using namespace std;
-
 class ListNode {
     public:
         int val;
@@ -17,6 +14,8 @@ class ListNode {
             this->val = data;
             this->next = NULL;
         }
+
+        ~ListNode() {}
 };
 
 void insert(ListNode* &head, ListNode* &tail, int data) {
@@ -32,27 +31,29 @@ void insert(ListNode* &head, ListNode* &tail, int data) {
 }
 
 ListNode* rotate(ListNode* &head, int k) {
-    
-    ListNode* prev = NULL;
-    ListNode* curr = head;
+    if(head == NULL) return head;
+    else {
+        int length = 1;
+        ListNode* tail = head;
 
-    while(k--) {
-        if(head == NULL || head->next == NULL) {
-            return head;
+        while(tail->next != NULL) {
+            tail = tail->next;
+            length += 1;
         }
-        else {
-            while(curr->next != NULL) {
-                prev = curr;
-                curr = curr->next;
-            }
-            curr->next = head;
-            prev->next = NULL;
-            head = curr;
+
+        k = k % length; // if k == length
+        ListNode* curr = head;
+        int i = 0;
+        int range = length - k - 1;
+        while(range--) {
+            curr = curr->next;
         }
+
+        tail->next = head;
+        head = curr->next;
+        curr->next = NULL;
+        return head;
     }
-
-    return head;
-
 }
 
 void print(ListNode *&head)
@@ -71,13 +72,13 @@ int main() {
     ListNode* head = n;
     ListNode* tail = n;
 
-    // for(int i = 1; i <= 5; i++) {
-    //     insert(head, tail, i);
-    // }
+    for(int i = 1; i <= 5; i++) {
+        insert(head, tail, i);
+    }
 
-    // print(head);
+    print(head);
 
-    ListNode* rotateList = rotate(head, 1);
+    ListNode* rotateList = rotate(head, 2);
     print(rotateList);
 
     // rotate(head);
