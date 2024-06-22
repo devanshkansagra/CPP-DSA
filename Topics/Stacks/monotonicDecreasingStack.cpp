@@ -1,21 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector <int> increasing(vector <int> nums) {
+vector <int> decreasing(vector <int> nums) {
     stack <int> st;
-    vector <int> result(nums.size());
+    vector <int> result;
 
     for(int i = 0; i < nums.size(); i++) {
         while(!st.empty() && st.top() < nums[i]) {
             st.pop();
         }
-        if (!st.empty()) {
-            result[i] = st.top();
-        } else {
-            result[i] = -1;
-        }
 
         st.push(nums[i]);
+    }
+
+    while(!st.empty()) {
+        result.insert(result.begin(), st.top());
+        st.pop();
     }
 
     return result;
@@ -23,7 +23,7 @@ vector <int> increasing(vector <int> nums) {
 int main() {
 
     vector <int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
-    vector <int> result = increasing(nums);
+    vector <int> result = decreasing(nums);
     for(int i = 0; i < result.size(); i++) {
         cout << result[i] << " ";
     }
